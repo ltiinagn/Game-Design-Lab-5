@@ -6,6 +6,7 @@ public class BreakBrick : MonoBehaviour
 {
     public bool broken;
     public GameObject prefab;
+    public GameConstants gameConstants;
     
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class BreakBrick : MonoBehaviour
         if (col.gameObject.CompareTag("Player") && !broken) {
             broken = true;
             // assume we have 5 debris per box
-            for (int x = 0; x<5; x++) {
+            for (int x = 0; x < gameConstants.debrisCount; x++) {
                 Instantiate(prefab, transform.position, Quaternion.identity);
             }
             gameObject.transform.parent.GetComponent<SpriteRenderer>().enabled = false;

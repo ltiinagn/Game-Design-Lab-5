@@ -46,12 +46,6 @@ public class ConsumableMushroom : MonoBehaviour
             if (col.gameObject.CompareTag("Pipe")) {
                 rigidBody.velocity = new Vector2(velocityBefore.x * -1, velocityBefore.y);
             }
-            else if (col.gameObject.CompareTag("Player")) {
-                stop = true;
-                coll.sharedMaterial.friction = 1;
-                coll.enabled = false;
-                coll.enabled = true;
-            }
         }
     }
 
@@ -59,9 +53,5 @@ public class ConsumableMushroom : MonoBehaviour
         if (other.gameObject.CompareTag("Goomba")) {
             Destroy(gameObject);
         }    
-    }
-
-    void OnBecameInvisible(){
-        Destroy(gameObject);
     }
 }

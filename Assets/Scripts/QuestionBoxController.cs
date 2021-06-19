@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class QuestionBoxController : MonoBehaviour
 {
-    public  Rigidbody2D rigidBody;
-    public  SpringJoint2D springJoint;
-    public  GameObject consummablePrefab; // the spawned mushroom prefab
-    public  SpriteRenderer spriteRenderer;
-    public  Sprite usedQuestionBox; // the sprite that indicates empty box instead of a question mark
+    public Rigidbody2D rigidBody;
+    public SpringJoint2D springJoint;
+    public GameObject consumablePrefab; // the spawned mushroom prefab
+    public SpriteRenderer spriteRenderer;
+    public Sprite usedQuestionBox; // the sprite that indicates empty box instead of a question mark
     private bool hit = false;
 
     public GameObject mushroom;
@@ -32,7 +32,7 @@ public class QuestionBoxController : MonoBehaviour
             // ensure that we move this object sufficiently 
             rigidBody.AddForce(new Vector2(0, rigidBody.mass*20), ForceMode2D.Impulse);
             // spawn mushroom
-            mushroom = Instantiate(consummablePrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1.1f, this.transform.position.z), Quaternion.identity);
+            mushroom = Instantiate(consumablePrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1.1f, this.transform.position.z), Quaternion.identity);
             // begin check to disable object's spring and rigidbody
             StartCoroutine(DisableHittable());
         }

@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
     private bool onGroundState = true;
     private bool jumpState = false;
 
-    public Transform enemyLocation;
-    public Text scoreText;
-    private int score = 0;
-    private bool countScoreState = false;
-
     private Animator marioAnimator;
     private AudioSource marioAudio;
 
@@ -28,31 +23,32 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Set to be 30 FPS
-	    Application.targetFrameRate =  30;
+	    Application.targetFrameRate = 30;
 	    marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
-        scoreText.text = "Score: " + score.ToString();
         
         marioAnimator = GetComponent<Animator>();
         marioAnimator.SetBool("onGround", onGroundState);
 
         marioAudio = GetComponent<AudioSource>();
+
+        // subscribe to player event
+        GameManager.OnPlayerDeath += PlayerDiesSequence;
     }
 
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
-        if (Input.GetKeyDown("space") && onGroundState){
+        if (Input.GetKeyDown("space") && onGroundState) {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
             marioAnimator.SetBool("onGround", onGroundState);
             jumpState = true;
-            countScoreState = true; //check if Gomba is underneath
         }
         
         // dynamic rigidbody
         float moveHorizontal = Input.GetAxis("Horizontal");
-        if (Mathf.Abs(moveHorizontal) > 0){
+        if (Mathf.Abs(moveHorizontal) > 0) {
             Vector2 movement = new Vector2(moveHorizontal, 0);
             if (marioBody.velocity.magnitude < maxSpeed)
                 marioBody.AddForce(movement * speed);
@@ -101,15 +97,12 @@ public class PlayerController : MonoBehaviour
             marioSprite.flipX = false;
         }
 
-        // when jumping, and Gomba is near Mario and we haven't registered our score
-        if (!onGroundState && countScoreState)
-        {
-            if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
-            {
-                countScoreState = false;
-                score++;
-                Debug.Log(score);
-            }
+        if (Input.GetKeyDown("z")) {
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z,this.gameObject);
+        }
+
+        if (Input.GetKeyDown("x")) {
+            CentralManager.centralManagerInstance.consumePowerup(KeyCode.X,this.gameObject);
         }
     }
 
@@ -129,8 +122,6 @@ public class PlayerController : MonoBehaviour
                 jumpState = false;
             }
             sparkle.Play();
-            countScoreState = false; // reset score state
-            scoreText.text = "Score: " + score.ToString();
         }
         // else if (col.gameObject.CompareTag("Obstacles") && Mathf.Abs(marioBody.velocity.y) < 0.01f) {
         //     Debug.Log("Collided");
@@ -143,24 +134,31 @@ public class PlayerController : MonoBehaviour
         // }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Goomba")) {
-            Debug.Log("Collided with Goomba!");
-            Camera camera = Camera.main;
-            camera.backgroundColor = Color.black;
-            camera.clearFlags = CameraClearFlags.SolidColor;
-            GameObject cameraObject = GameObject.Find("Main Camera");
-            cameraObject.GetComponent<CameraController>().enabled = false;
-            GameObject mainGameObject = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject;
-            Destroy(mainGameObject);
-            Transform transformUI = GameObject.Find("UI").transform;
-            foreach (Transform eachChild in transformUI) {
-                if (eachChild.name != "Score") {
-                    Debug.Log("Child found. Name: " + eachChild.name);
-                    // enable them
-                    eachChild.gameObject.SetActive(true);
-                }
-            }
-        }
+    // void OnTriggerEnter2D(Collider2D other) {
+    //     if (other.gameObject.CompareTag("Goomba")) {
+    //         Debug.Log("Collided with Goomba!");
+    //         Camera camera = Camera.main;
+    //         camera.backgroundColor = Color.black;
+    //         camera.clearFlags = CameraClearFlags.SolidColor;
+    //         GameObject cameraObject = GameObject.Find("Main Camera");
+    //         cameraObject.GetComponent<CameraController>().enabled = false;
+    //         GameObject mainGameObject = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject;
+    //         Destroy(mainGameObject);
+    //         Transform transformUI = GameObject.Find("UI").transform;
+    //         foreach (Transform eachChild in transformUI) {
+    //             if (eachChild.name != "Score") {
+    //                 Debug.Log("Child found. Name: " + eachChild.name);
+    //                 // enable them
+    //                 eachChild.gameObject.SetActive(true);
+    //             }
+    //         }
+    //     }
+    // }
+
+    void  PlayerDiesSequence(){
+        // Mario dies
+        Debug.Log("Mario dies");
+        // TODO do whatever you want here, animate etc
+        // ...
     }
 }
