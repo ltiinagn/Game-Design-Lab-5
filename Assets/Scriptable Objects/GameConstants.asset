@@ -24,8 +24,8 @@ MonoBehaviour:
   breakDebrisForce: 10
   debrisCount: 10
   maxOffset: 5
-  enemyPatroltime: 3
-  enemySpawnPointCenterX: 17
+  enemyPatroltime: 1.5
+  enemySpawnPointCenterX: 25
   enemySpawnPointCenterY: -2
   groundSurface: -2
   bounce: 4

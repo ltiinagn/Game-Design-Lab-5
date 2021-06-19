@@ -32,8 +32,8 @@ public class GameConstants : ScriptableObject
 
     // for EnemyController.cs
     public int maxOffset = 5;
-    public int enemyPatroltime = 3;
-    public float enemySpawnPointCenterX = 17.0f;
+    public float enemyPatroltime = 1.5f;
+    public float enemySpawnPointCenterX = 25.0f;
     public float enemySpawnPointCenterY = -2.0f;
     public float groundSurface = -2.0f;
     public int bounce = 4;

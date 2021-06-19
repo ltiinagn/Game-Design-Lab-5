@@ -134,31 +134,42 @@ public class PlayerController : MonoBehaviour
         // }
     }
 
-    // void OnTriggerEnter2D(Collider2D other) {
-    //     if (other.gameObject.CompareTag("Goomba")) {
-    //         Debug.Log("Collided with Goomba!");
-    //         Camera camera = Camera.main;
-    //         camera.backgroundColor = Color.black;
-    //         camera.clearFlags = CameraClearFlags.SolidColor;
-    //         GameObject cameraObject = GameObject.Find("Main Camera");
-    //         cameraObject.GetComponent<CameraController>().enabled = false;
-    //         GameObject mainGameObject = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject;
-    //         Destroy(mainGameObject);
-    //         Transform transformUI = GameObject.Find("UI").transform;
-    //         foreach (Transform eachChild in transformUI) {
-    //             if (eachChild.name != "Score") {
-    //                 Debug.Log("Child found. Name: " + eachChild.name);
-    //                 // enable them
-    //                 eachChild.gameObject.SetActive(true);
-    //             }
+    // void ShowRestart() {
+    //     Camera camera = Camera.main;
+    //     camera.backgroundColor = Color.black;
+    //     camera.clearFlags = CameraClearFlags.SolidColor;
+    //     GameObject cameraObject = GameObject.Find("Main Camera");
+    //     cameraObject.GetComponent<CameraController>().enabled = false;
+    //     GameObject mainGameObject = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject;
+    //     Destroy(mainGameObject);
+    //     Transform transformUI = GameObject.Find("UI").transform;
+    //     foreach (Transform eachChild in transformUI) {
+    //         if (eachChild.name != "Score" && eachChild.name != "PowerupSlot1" && eachChild.name != "PowerupSlot2") {
+    //             Debug.Log("Child found. Name: " + eachChild.name);
+    //             // enable them
+    //             eachChild.gameObject.SetActive(true);
     //         }
     //     }
     // }
 
-    void  PlayerDiesSequence(){
+    IEnumerator AnimateDeath() {
+        marioBody.bodyType = RigidbodyType2D.Kinematic;
+        float steps = 20.0f;
+        float gravity = -9.8f;
+        float initialVelocityY = 1.0f;
+        marioBody.velocity = new Vector2(0.0f, 0.0f);
+        gameObject.GetComponent<Collider2D>().enabled = false;
+		for (int i = 0; i < steps; i++){
+			// make sure enemy is still above ground
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + initialVelocityY * i/steps + 0.5f * gravity * i/steps * i/steps, this.transform.position.z);
+			yield return null;
+		}
+        yield return new WaitForSeconds(2);
+    }
+
+    void PlayerDiesSequence(){
         // Mario dies
         Debug.Log("Mario dies");
-        // TODO do whatever you want here, animate etc
-        // ...
+        StartCoroutine(AnimateDeath());
     }
 }

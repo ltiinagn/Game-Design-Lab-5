@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8669879007680321095}
   - component: {fileID: 2427844806847224804}
   - component: {fileID: 4909324945251892330}
+  - component: {fileID: 7945489650146139397}
   m_Layer: 0
   m_Name: EnemyGoomba
   m_TagString: Goomba
@@ -146,3 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameConstants: {fileID: 11400000, guid: b102e1edf2830b04b923e40c6b6003c2, type: 2}
+--- !u!95 &7945489650146139397
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457336357766186714}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21ab2922414e9e545846d36082dcd8ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

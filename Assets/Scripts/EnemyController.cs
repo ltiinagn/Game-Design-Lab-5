@@ -8,6 +8,10 @@ public class EnemyController : MonoBehaviour
 	private float originalX;
 	private Vector2 velocity;
 	private Rigidbody2D enemyBody;
+
+	private Animator enemyAnimator;
+
+	private bool move;
 	
 	void Start()
 	{
@@ -16,6 +20,7 @@ public class EnemyController : MonoBehaviour
 		// get the starting position
 		originalX = transform.position.x;
 	
+		move = true;
 		// randomise initial direction
 		moveRight = Random.Range(0, 2) == 0 ? -1 : 1;
 		
@@ -24,6 +29,10 @@ public class EnemyController : MonoBehaviour
 
         // subscribe to player event
         GameManager.OnPlayerDeath += EnemyRejoice;
+
+		enemyAnimator = GetComponent<Animator>();
+        enemyAnimator.SetInteger("moveRight", moveRight);
+		enemyAnimator.SetBool("marioDead", false);
 	}
 	
 	void ComputeVelocity()
@@ -38,17 +47,20 @@ public class EnemyController : MonoBehaviour
 
 	void Update()
 	{
-		if (Mathf.Abs(enemyBody.position.x - originalX) < gameConstants.maxOffset)
-		{   
-            // move goomba
-			MoveEnemy();
-		}
-		else
-		{
-			// change direction
-			moveRight *= -1;
-			ComputeVelocity();
-			MoveEnemy();
+		if (move) {
+			if (Mathf.Abs(enemyBody.position.x - originalX) < gameConstants.maxOffset)
+			{   
+				// move goomba
+				MoveEnemy();
+			}
+			else
+			{
+				// change direction
+				moveRight *= -1;
+				enemyAnimator.SetInteger("moveRight", moveRight);
+				ComputeVelocity();
+				MoveEnemy();
+			}
 		}
 	}
 
@@ -57,6 +69,7 @@ public class EnemyController : MonoBehaviour
 		if (other.gameObject.tag == "Player"){
 			// check if collides on top
 			float yoffset = (other.transform.position.y - this.transform.position.y);
+			Debug.Log(yoffset);
 			if (yoffset > 0.75f) {
 				Rigidbody2D marioBody = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject.transform.Find("Mario").GetComponent<Rigidbody2D>();
 				marioBody.velocity = new Vector2(marioBody.velocity.x, 0.0f);
@@ -108,7 +121,7 @@ public class EnemyController : MonoBehaviour
     // animation when player is dead
     void EnemyRejoice(){
         Debug.Log("Enemy killed Mario");
-        // TODO do whatever you want here, animate etc
-        // ...
+		move = false;
+        enemyAnimator.SetBool("marioDead", true);
     }
 }
