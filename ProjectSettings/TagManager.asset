@@ -11,11 +11,12 @@ TagManager:
   - Pipe
   - ObstaclesEdge
   - Koopa
+  - Consumables
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Mario
   - Water
   - UI
   - Background
@@ -23,7 +24,7 @@ TagManager:
   - Foreground
   - Obstacles
   - QuestionBox
-  - Spawned
+  - Consumables
   - ObstaclesEdge
   - BG01
   - BG02
@@ -35,7 +36,7 @@ TagManager:
   - BG08
   - BG09
   - BG10
-  - 
+  - ConsumablesTrigger
   - 
   - 
   - 

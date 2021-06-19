@@ -6,7 +6,6 @@ public class ConsumableMushroom : MonoBehaviour
 {
     public Vector2 velocityBefore;
     public Rigidbody2D rigidBody;
-    public bool stop;
     public BoxCollider2D coll;
 
     // Start is called before the first frame update
@@ -18,7 +17,6 @@ public class ConsumableMushroom : MonoBehaviour
         coll.sharedMaterial.friction = 0;
         coll.enabled = false;
         coll.enabled = true;
-        stop = false;
 
         int randomInt = Random.Range(0, 2);
         if (randomInt == 0) {
@@ -41,11 +39,9 @@ public class ConsumableMushroom : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (!stop) {
-            Debug.Log(col.gameObject.tag);
-            if (col.gameObject.CompareTag("Pipe")) {
-                rigidBody.velocity = new Vector2(velocityBefore.x * -1, velocityBefore.y);
-            }
+        Debug.Log(col.gameObject.tag);
+        if (col.gameObject.CompareTag("Pipe")) {
+            rigidBody.velocity = new Vector2(velocityBefore.x * -1, velocityBefore.y);
         }
     }
 

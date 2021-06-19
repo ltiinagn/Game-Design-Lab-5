@@ -4731,14 +4731,6 @@ PrefabInstance:
       propertyPath: enemyLocation
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3122083943989149829, guid: 899e345463a540f45b494b7aee85ca6c, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3122083943989149829, guid: 899e345463a540f45b494b7aee85ca6c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ab4c60e95d59b1f4983db0cb1d1a621e, type: 2}
     - target: {fileID: 5802941174675362662, guid: 899e345463a540f45b494b7aee85ca6c, type: 3}
       propertyPath: m_RootOrder
       value: 0

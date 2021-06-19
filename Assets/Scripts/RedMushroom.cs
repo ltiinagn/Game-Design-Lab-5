@@ -24,14 +24,34 @@ public class RedMushroom : MonoBehaviour, ConsumableInterface
 		Destroy(gameObject);
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
+	IEnumerator minimize() {
+		int steps = 5;
+		float stepper = 1.0f/(float) steps;
+
+		for (int i = 0; i < steps; i ++){
+			gameObject.transform.parent.transform.localScale = new Vector3(gameObject.transform.parent.transform.localScale.x + stepper, gameObject.transform.parent.transform.localScale.y + stepper, gameObject.transform.parent.transform.localScale.z);
+			yield return null;
+		}
+
+		for (int i = 0; i < steps*2; i ++){
+			gameObject.transform.parent.transform.localScale = new Vector3(gameObject.transform.parent.transform.localScale.x - stepper, gameObject.transform.parent.transform.localScale.y - stepper, gameObject.transform.parent.transform.localScale.z);
+			yield return null;
+		}
+		gameObject.transform.parent.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+		gameObject.transform.parent.GetComponent<Collider2D>().enabled = false;
+		gameObject.transform.parent.GetComponent<SpriteRenderer>().enabled = false;
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.gameObject.CompareTag("Player")){
 			// update UI
 			CentralManager.centralManagerInstance.addPowerup(t, gameConstants.powerupRedSlot, this);
-			GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-			GetComponent<Collider2D>().enabled = false;
-			GetComponent<SpriteRenderer>().enabled = false;
+			BoxCollider2D parentColl = gameObject.transform.parent.GetComponent<BoxCollider2D>();
+            parentColl.sharedMaterial.friction = 1;
+            parentColl.enabled = false;
+            parentColl.enabled = true;
+			StartCoroutine(minimize());
 		}
 	}
 }

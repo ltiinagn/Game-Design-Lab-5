@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04adab5a8cc9d0f47be0138e89cb908c, type: 3}
   m_Name: GameConstants
   m_EditorClassIdentifier: 
-  consumeTimeStep: 10
-  consumeLargestScale: 4
+  powerUpBlinkInterval: 0.5
+  powerupRedSlot: 0
+  powerUpRedTimeSteps: 10
+  powerUpRedIncrease: 10
+  powerupGreenSlot: 1
+  powerUpGreenTimeSteps: 20
+  powerUpGreenMultiplier: 2
   breakTimeStep: 30
   breakDebrisTorque: 10
   breakDebrisForce: 10
-  spawnNumberOfDebris: 10
-  rotatorRotateSpeed: 6
-  testValue: 0
+  debrisCount: 10
   maxOffset: 5
   enemyPatroltime: 3
   enemySpawnPointCenterX: 17
   enemySpawnPointCenterY: -2
   groundSurface: -2
-  bounce: 3
+  bounce: 4

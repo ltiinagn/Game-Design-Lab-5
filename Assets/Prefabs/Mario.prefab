@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1893266200758717543}
   - component: {fileID: 3141019016731664908}
   - component: {fileID: 8100570133277390555}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Mario
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -152,8 +152,6 @@ MonoBehaviour:
   speed: 10
   upSpeed: 10
   maxSpeed: 15
-  enemyLocation: {fileID: 0}
-  scoreText: {fileID: 0}
   sparkle: {fileID: 7012061790525918507}
 --- !u!82 &3141019016731664908
 AudioSource:
