@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakBrick : MonoBehaviour
+public class BreakBrickCoin : MonoBehaviour
 {
     public bool broken;
     public GameObject prefab;
@@ -23,6 +23,7 @@ public class BreakBrick : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.CompareTag("Player") && !broken) {
             broken = true;
+            // assume we have 5 debris per box
             for (int x = 0; x < gameConstants.debrisCount; x++) {
                 Instantiate(prefab, transform.position, Quaternion.identity);
             }
@@ -30,6 +31,7 @@ public class BreakBrick : MonoBehaviour
             gameObject.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.transform.parent.Find("TopEdge").GetComponent<EdgeCollider2D>().enabled = false;
             GetComponent<EdgeCollider2D>().enabled = false;
+			CentralManager.centralManagerInstance.increaseScoreBrick();
         }
     }
 }

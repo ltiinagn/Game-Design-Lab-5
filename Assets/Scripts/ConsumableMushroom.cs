@@ -19,12 +19,7 @@ public class ConsumableMushroom : MonoBehaviour
         coll.enabled = true;
 
         int randomInt = Random.Range(0, 2);
-        if (randomInt == 0) {
-            rigidBody.AddForce(Vector2.left * 3, ForceMode2D.Impulse);
-        }
-        else {
-            rigidBody.AddForce(Vector2.right * 3, ForceMode2D.Impulse);
-        }
+        rigidBody.AddForce((randomInt == 0 ? Vector2.left : Vector2.right) * 3, ForceMode2D.Impulse);
     }
     
     void FixedUpdate() {

@@ -20,6 +20,26 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    void spawnNewEnemy() {
+        ObjectType i;
+        i = ObjectType.goombaEnemy;
+        GameObject item;
+        item = ObjectPooler.SharedInstance.GetPooledObject(i);
+        if (item != null) {
+            spawnNewGoomba();
+        }
+        else {
+            i = ObjectType.koopaEnemy;
+            item = ObjectPooler.SharedInstance.GetPooledObject(i);
+            if (item != null) {
+                spawnNewKoopa();
+            }
+            else {
+                Debug.Log("maximum enemies present!");
+            }
+        }
+    }
+
     void spawnNewGoomba() {
         spawnFromPooler(ObjectType.goombaEnemy);
     }
@@ -31,6 +51,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // subscribe to brick coin break
+        GameManager.OnBrickCoinBreak += spawnNewEnemy;
+
         GameManager.OnGoombaDeath += spawnNewGoomba;
         GameManager.OnKoopaDeath += spawnNewKoopa;
         // spawn two goombaEnemy

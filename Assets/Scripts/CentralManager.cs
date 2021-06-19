@@ -32,6 +32,10 @@ public class CentralManager : MonoBehaviour
 		gameManager.increaseScoreKoopa();
 	}
 
+	public void increaseScoreBrick() {
+		gameManager.increaseScoreBrick();
+	}
+
     public void damagePlayer(){
         gameManager.damagePlayer();
     }
