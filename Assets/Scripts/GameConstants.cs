@@ -5,10 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameConstants", menuName = "ScriptableObjects/GameConstants", order = 1)]
 public class GameConstants : ScriptableObject
 {
-	// for Scoring system
-    int currentScore;
-    int currentPlayerHealth;
-
     // for Consumable Blink Interval
     public float powerUpBlinkInterval = 0.5f;
 
