@@ -28,4 +28,4 @@ MonoBehaviour:
   enemySpawnPointCenterX: 25
   enemySpawnPointCenterY: -2
   groundSurface: -2
-  bounce: 4
+  bounce: 6

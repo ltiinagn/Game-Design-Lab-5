@@ -32,5 +32,5 @@ public class GameConstants : ScriptableObject
     public float enemySpawnPointCenterX = 25.0f;
     public float enemySpawnPointCenterY = -2.0f;
     public float groundSurface = -2.0f;
-    public int bounce = 4;
+    public int bounce = 6;
 }

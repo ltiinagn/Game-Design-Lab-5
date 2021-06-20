@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpState = false;
 
     private Animator marioAnimator;
-    private AudioSource marioAudio;
+    private AudioSource[] marioAudio;
 
     public ParticleSystem sparkle;
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         marioAnimator = GetComponent<Animator>();
         marioAnimator.SetBool("onGround", onGroundState);
 
-        marioAudio = GetComponent<AudioSource>();
+        marioAudio = GetComponents<AudioSource>();
 
         // subscribe to player event
         GameManager.OnPlayerDeath += PlayerDiesSequence;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     void PlayJumpSound() {
         if (jumpState) {
-            marioAudio.PlayOneShot(marioAudio.clip);
+            marioAudio[0].PlayOneShot(marioAudio[0].clip);
         }
     }
 
@@ -171,5 +171,6 @@ public class PlayerController : MonoBehaviour
         // Mario dies
         Debug.Log("Mario dies");
         StartCoroutine(AnimateDeath());
+        marioAudio[1].PlayOneShot(marioAudio[1].clip);
     }
 }

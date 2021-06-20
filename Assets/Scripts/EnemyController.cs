@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
 			// check if collides on top
 			float yoffset = (other.transform.position.y - this.transform.position.y);
 			Debug.Log(yoffset);
-			if (yoffset > 0.75f) {
+			if (yoffset > 0.5f) {
 				Rigidbody2D marioBody = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject.transform.Find("Mario").GetComponent<Rigidbody2D>();
 				marioBody.velocity = new Vector2(marioBody.velocity.x, 0.0f);
 				if (gameObject.tag == "Goomba") {

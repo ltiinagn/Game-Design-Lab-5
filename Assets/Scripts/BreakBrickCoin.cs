@@ -22,6 +22,9 @@ public class BreakBrickCoin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.CompareTag("Player") && !broken) {
+            AudioSource breakBrickCoinAudio;
+            breakBrickCoinAudio = gameObject.transform.parent.GetComponent<AudioSource>();
+            breakBrickCoinAudio.PlayOneShot(breakBrickCoinAudio.clip);
             broken = true;
             // assume we have 5 debris per box
             for (int x = 0; x < gameConstants.debrisCount; x++) {
