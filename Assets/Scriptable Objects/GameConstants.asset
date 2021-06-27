@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04adab5a8cc9d0f47be0138e89cb908c, type: 3}
   m_Name: GameConstants
   m_EditorClassIdentifier: 
+  playerMaxSpeed: 5
+  playerMaxJumpSpeed: 10
+  playerDefaultForce: 15
   powerUpBlinkInterval: 0.5
   powerupRedSlot: 0
   powerUpRedTimeSteps: 10
@@ -24,8 +27,8 @@ MonoBehaviour:
   breakDebrisForce: 10
   debrisCount: 10
   maxOffset: 5
-  enemyPatroltime: 1.5
+  enemyPatroltime: 2
   enemySpawnPointCenterX: 25
   enemySpawnPointCenterY: -2
   groundSurface: -2
-  bounce: 6
+  bounce: 5

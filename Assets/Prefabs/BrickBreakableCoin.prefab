@@ -219,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324766635439551865}
   - component: {fileID: 4400263319011688770}
-  - component: {fileID: 4550051942922357225}
+  - component: {fileID: 9007545870878622655}
   m_Layer: 0
   m_Name: BottomCollider
   m_TagString: Untagged
@@ -263,7 +263,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &4550051942922357225
+--- !u!114 &9007545870878622655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,6 +278,21 @@ MonoBehaviour:
   broken: 0
   prefab: {fileID: 4644048067751066610, guid: 811630a1246c2f74a933099a02daeb8d, type: 3}
   gameConstants: {fileID: 11400000, guid: b102e1edf2830b04b923e40c6b6003c2, type: 2}
+  onBrickCoinBreak:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6f9469def033a774c97fbbc6a0158af7, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7557556254498663943
 GameObject:
   m_ObjectHideFlags: 0

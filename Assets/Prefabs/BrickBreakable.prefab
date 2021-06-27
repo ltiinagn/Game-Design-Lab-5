@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324766635439551865}
   - component: {fileID: 4400263319011688770}
-  - component: {fileID: 4369961664722717567}
+  - component: {fileID: 5710490229095563899}
   m_Layer: 0
   m_Name: BottomCollider
   m_TagString: Untagged
@@ -166,7 +166,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &4369961664722717567
+--- !u!114 &5710490229095563899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4488886670258625240}
   - component: {fileID: 2659558963336566361}
   - component: {fileID: 1391580500813267328}
-  - component: {fileID: 7410078471378793164}
+  - component: {fileID: 4987647650016237810}
   m_Layer: 10
   m_Name: EdgeDetector
   m_TagString: QuestionBox
@@ -315,7 +315,7 @@ SpringJoint2D:
   m_Distance: 0.005
   m_DampingRatio: 1
   m_Frequency: 3
---- !u!114 &7410078471378793164
+--- !u!114 &4987647650016237810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 4488886670258625240}
   springJoint: {fileID: 1391580500813267328}
-  consummablePrefab: {fileID: 4325912781089753266, guid: 43e85e6a7f0942c49a9859c6d50ba8aa, type: 3}
+  consumablePrefab: {fileID: 4325912781089753266, guid: 43e85e6a7f0942c49a9859c6d50ba8aa, type: 3}
   spriteRenderer: {fileID: 5685272531867690598}
   usedQuestionBox: {fileID: 21300054, guid: 855dc7396df3c4e49ac4d21234eac5e1, type: 3}
   mushroom: {fileID: 0}

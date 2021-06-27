@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameConstants", menuName = "ScriptableObjects/GameConstants", order = 1)]
 public class GameConstants : ScriptableObject
 {
+    // Mario basic starting values
+    public int playerMaxSpeed = 5;
+    public int playerMaxJumpSpeed = 10;
+    public int playerDefaultForce = 15;
+
     // for Consumable Blink Interval
     public float powerUpBlinkInterval = 0.5f;
 
@@ -28,7 +33,7 @@ public class GameConstants : ScriptableObject
 
     // for EnemyController.cs
     public int maxOffset = 5;
-    public float enemyPatroltime = 1.5f;
+    public float enemyPatroltime = 2.0f;
     public float enemySpawnPointCenterX = 25.0f;
     public float enemySpawnPointCenterY = -2.0f;
     public float groundSurface = -2.0f;

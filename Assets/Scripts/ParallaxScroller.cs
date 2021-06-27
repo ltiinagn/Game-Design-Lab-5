@@ -14,7 +14,6 @@ public  class ParallaxScroller : MonoBehaviour
 
 	void  Start()
 	{
-        mainCamera = Camera.main.transform;
 		offset = new float[layers.Length];
 		for(int i = 0; i< layers.Length; i++){
 			offset[i] = 0.0f;	

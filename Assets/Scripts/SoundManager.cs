@@ -8,13 +8,12 @@ public class SoundManager : MonoBehaviour
     private float[] pitchShift = {1.0f, 1.05f};
     private AudioSource enemyAudio;
 
-    void stopBGM() {
-        GameObject mainGameObject = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject;
-        AudioSource gameBGM = mainGameObject.GetComponent<AudioSource>();
+    public void stopBGM() {
+        AudioSource gameBGM = GameObject.Find("Game").GetComponent<AudioSource>();
         gameBGM.Stop();
     }
 
-    void goombaDeathSound() {
+    public void goombaDeathSound() {
         if (pitchShift[1] > 0.0f) {
             pitchShift[1] = 0.0f;
             pitchShift[0] = 1.0f;
@@ -26,26 +25,23 @@ public class SoundManager : MonoBehaviour
         enemyAudio.PlayOneShot(enemyAudio.clip);
     }
 
-    void koopaDeathSound() {
-        if (pitchShift[0] > 0.0f) {
-            pitchShift[0] = 0.0f;
-            pitchShift[1] = 1.05f;
-        }
-        else if (pitchShift[1] <= 1.75f) {
-            pitchShift[1] += 0.1f;
-        }
-        enemyAudio.pitch = pitchShift[1];
-        enemyAudio.PlayOneShot(enemyAudio.clip);
-    }
+    // void koopaDeathSound() {
+    //     if (pitchShift[0] > 0.0f) {
+    //         pitchShift[0] = 0.0f;
+    //         pitchShift[1] = 1.05f;
+    //     }
+    //     else if (pitchShift[1] <= 1.75f) {
+    //         pitchShift[1] += 0.1f;
+    //     }
+    //     enemyAudio.pitch = pitchShift[1];
+    //     enemyAudio.PlayOneShot(enemyAudio.clip);
+    // }
 
     // Start is called before the first frame update
     void Start()
     {
         enemyAudio = GetComponent<AudioSource>();
         // subscribe to brick coin break
-        GameManager.OnPlayerDeath += stopBGM;
-        GameManager.OnGoombaDeath += goombaDeathSound;
-        GameManager.OnKoopaDeath += koopaDeathSound;
     }
 
     // Update is called once per frame

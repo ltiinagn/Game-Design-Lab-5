@@ -15,15 +15,6 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    void OnEnable()
-    {
-        this.transform.position = new Vector3(0, 2, -10);
-        player = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject.transform.Find("Mario");
-        startLimit = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject.transform.Find("Obstacles/StartLimit");
-        endLimit = GameObject.Find("UI").GetComponent<MenuController>().mainGameObject.transform.Find("Obstacles/EndLimit");
         // get coordinate of the bottomleft of the viewport
         // z doesn't matter since the camera is orthographic
         Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
