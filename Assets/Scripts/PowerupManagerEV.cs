@@ -83,9 +83,10 @@ public class PowerupManagerEV : MonoBehaviour
     }
 
     IEnumerator removeEffect(Powerup p, int index) {
-		for (int i = 0; i < p.duration*2; i++) {
+        int intervalMultiplier = 2;
+		for (int i = 0; i < p.duration*intervalMultiplier; i++) {
 			powerupIcons[index].SetActive(!powerupIcons[index].activeSelf);
-			yield return new WaitForSeconds(1.0f/2.0f);
+			yield return new WaitForSeconds(1.0f/intervalMultiplier);
 		}
 		powerupIcons[index].SetActive(false);
         marioMaxSpeed.ApplyChange(-p.absoluteSpeedBooster);
